@@ -12,9 +12,11 @@
 
 .character_image {
   width: 150px;
+  height: 150px;
   border-radius: 50%;
 }
 
 .character_name {
+  margin-top: 20px;
   color: white;
 }

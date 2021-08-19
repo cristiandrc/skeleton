@@ -1,16 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
-
+import SkeletonCard from "./SkeletonCard";
 const Cards = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-
-  // const getData = async () => {
-  //   const response = await fetch("https://rickandmortyapi.com/api/character/");
-  //   const dataApi = await response.json();
-  //   setData(dataApi.results);
-  //   dataApi && setLoading(false);
-  // };
 
   useEffect(() => {
     fetch("https://rickandmortyapi.com/api/character/")
@@ -23,11 +16,9 @@ const Cards = () => {
 
   return (
     <>
-      {isLoading ? (
-        <h1>Cargando....</h1>
-      ) : (
-        data.map((character) => <Card key={character.id} {...character} />)
-      )}
+      {isLoading
+        ? new Array(10).fill(1).map((c, i) => <SkeletonCard key={i} />)
+        : data.map((character) => <Card key={character.id} {...character} />)}
     </>
   );
 };

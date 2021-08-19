@@ -1,0 +1,63 @@
+@keyframes loading {
+  0% {
+    transform: translateX(0);
+  }
+  50%,
+  100% {
+    transform: translateX(400px);
+  }
+}
+
+.skeleton_container {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  background-color: #333;
+  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px auto;
+  padding-top: 10px;
+  position: relative;
+}
+
+.skeleton_image {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #ddd;
+}
+.skeleton_image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 100%;
+  background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
+  animation: loading 2s infinite linear;
+}
+
+.skeleton_name {
+  position: relative;
+  width: 150px;
+  height: 30px;
+  margin-top: 20px;
+  background-color: #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.skeleton_name::before {
+  content: "";
+  height: 100%;
+  width: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(to right, #f2f2f2, #ddd, #f2f2f2);
+  animation: loading 2s infinite linear;
+}
