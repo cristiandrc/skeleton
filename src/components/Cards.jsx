@@ -3,22 +3,33 @@ import Card from "./Card";
 
 const Cards = () => {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState({});
+  const [data, setData] = useState([]);
 
-  const getData = async () => {
-    setLoading(true);
-    const response = await fetch("https://rickandmortyapi.com/api/character/");
-    const dataApi = await response.json();
-    setData(dataApi.results);
-  };
+  // const getData = async () => {
+  //   const response = await fetch("https://rickandmortyapi.com/api/character/");
+  //   const dataApi = await response.json();
+  //   setData(dataApi.results);
+  //   dataApi && setLoading(false);
+  // };
 
   useEffect(() => {
-    getData();
-    setLoading(false);
+    fetch("https://rickandmortyapi.com/api/character/")
+      .then((response) => response.json())
+      .then((data) => {
+        setData(data.results);
+        setLoading(false);
+      });
   }, []);
-  console.log(data);
 
-  return <>{isLoading ? <h1>Cargando..</h1> : <Card />}</>;
+  return (
+    <>
+      {isLoading ? (
+        <h1>Cargando....</h1>
+      ) : (
+        data.map((character) => <Card key={character.id} {...character} />)
+      )}
+    </>
+  );
 };
 
 export default Cards;
